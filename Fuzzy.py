@@ -69,7 +69,8 @@ def inferensi(nilai_ipk, nilai_penghasilan, nilai_jarak, res):
                 z.append(z_dapat(alpha, x))
             else:
                 z.append(z_tidak_dapat(alpha, x))
-            print(f"IF IPK = {i} AND Penghasilan = {j} AND Jarak = {k} THEN z = {z[x]} alpha = {alpha[x]} x = {x}")
+            # print(f"IF IPK = {i} AND Penghasilan = {j} AND Jarak = {k} THEN z = {z[x]} alpha = {alpha[x]} x = {x}")
+            print("Data anda berhasil tersimpan")
             x += 1
 
     defuzzifikasi(alpha, z, res)
@@ -81,7 +82,7 @@ def defuzzifikasi(alpha, z, res):
     jum = (a * b for a, b in zip(alpha, z))
     defuzi = sum(jum) / sum(alpha)
     res.value = round(defuzi, 2)
-    print("Hasil Defuzzifikasi = ", round(defuzi, 2), "%")
+    # print("Hasil Defuzzifikasi = ", round(defuzi, 2), "%")
 
 
 def read_csv(filename):

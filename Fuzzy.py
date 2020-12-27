@@ -85,7 +85,10 @@ def defuzzifikasi(alpha, z, res):
 
 
 def read_csv(filename):
-    print(pandas.read_csv(filename))
+    try:
+        print(pandas.read_csv(filename))
+    except FileNotFoundError:
+        print("Maaf, belum ada data")
 
 
 def write_csv(filename, nama, ipk, penghasilan, jarak, peluang):

@@ -1,10 +1,9 @@
 import os
 import sys
 import csv
+import pandas
 from itertools import product
 from multiprocessing import Process, Manager
-import pandas
-
 
 def linear_turun(a, b, x):
     derajat_keanggotaan = (1 if x <= a else (b - x) / (b - a) if a <= x <= b else 0)
@@ -70,8 +69,8 @@ def inferensi(nilai_ipk, nilai_penghasilan, nilai_jarak, res):
             else:
                 z.append(z_tidak_dapat(alpha, x))
             # print(f"IF IPK = {i} AND Penghasilan = {j} AND Jarak = {k} THEN z = {z[x]} alpha = {alpha[x]} x = {x}")
-            print("Data anda berhasil tersimpan")
             x += 1
+    print("\n########### Data anda berhasil tersimpan ###########\n")
 
     defuzzifikasi(alpha, z, res)
 
@@ -109,6 +108,7 @@ def write_csv(filename, nama, ipk, penghasilan, jarak, peluang):
 
 def menu(filename):
     n = int(input("1. Tambah Data\n2. Tampilkan Data\n3. Keluar\nPilih Menu : "))
+    print()
     if n == 1:
         main(filename)
     elif n == 2:
@@ -138,6 +138,7 @@ def main(filename):
     write_csv(filename, nama, ipk, penghasilan, jarak, res.value)
 
     repeat = input("Apakah anda ingin menginput data lagi?(y/n) : ")
+    print()
     while repeat == "y":
         main(filename)
     menu(filename)

@@ -7,17 +7,17 @@ from multiprocessing import Process, Manager
 
 def linear_turun(a, b, x):
     derajat_keanggotaan = (1 if x <= a else (b - x) / (b - a) if a <= x <= b else 0)
-    return derajat_keanggotaan
+    yield derajat_keanggotaan
 
 
 def linear_naik(a, b, x):
     derajat_keanggotaan = (0 if x <= a else (x - a) / (b - a) if a <= x <= b else 1)
-    return derajat_keanggotaan
+    yield derajat_keanggotaan
 
 
 def segitiga(a, b, c, x):
     derajat_keanggotaan = ((x - a) / (b - a) if a <= x <= b else (c - x) / (c - b) if b <= x <= c else 0)
-    return derajat_keanggotaan
+    yield derajat_keanggotaan
 
 
 def fungsi_keanggotaan(ipk, penghasilan, jarak, res):
@@ -33,10 +33,10 @@ def fungsi_keanggotaan(ipk, penghasilan, jarak, res):
     jarak_sedang = lambda x: segitiga(5, 12.5, 20, x)
     jarak_jauh = lambda x: linear_naik(12.5, 20, x)
 
-    nilai_ipk = [ipk_rendah(ipk), ipk_sedang(ipk), ipk_tinggi(ipk)]
-    nilai_penghasilan = [penghasilan_rendah(penghasilan), penghasilan_sedang(penghasilan),
-                         penghasilan_tinggi(penghasilan)]
-    nilai_jarak = [jarak_dekat(jarak), jarak_sedang(jarak), jarak_jauh(jarak)]
+    nilai_ipk = [next(ipk_rendah(ipk)), next(ipk_sedang(ipk)), next(ipk_tinggi(ipk))]
+    nilai_penghasilan = [next(penghasilan_rendah(penghasilan)), next(penghasilan_sedang(penghasilan)),
+                         next(penghasilan_tinggi(penghasilan))]
+    nilai_jarak = [next(jarak_dekat(jarak)), next(jarak_sedang(jarak)), next(jarak_jauh(jarak))]
 
     inferensi(nilai_ipk, nilai_penghasilan, nilai_jarak, res)
 

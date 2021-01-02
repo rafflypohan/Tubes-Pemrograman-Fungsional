@@ -41,18 +41,19 @@ def fungsi_keanggotaan(ipk, penghasilan, jarak, res):
     inferensi(nilai_ipk, nilai_penghasilan, nilai_jarak, res)
 
 
+
 def inferensi(nilai_ipk, nilai_penghasilan, nilai_jarak, res):
     x = 0
     alpha = []
     z = []
-    ls = []
+    tmp = []
     z_dapat = lambda alpha, x: (80 - 40) * alpha[x] + 40
     z_tidak_dapat = lambda alpha, x: 80 - (alpha[x]) * (80 - 40)
     for i, j, k in product(nilai_ipk, nilai_penghasilan, nilai_jarak):
         if (i and j and k) > 0:
-            ls.clear()
-            ls.extend([i, j, k])
-            alpha.append(min(ls))
+            tmp.clear()
+            tmp.extend([i, j, k])
+            alpha.append(min(tmp))
 
             if nilai_ipk.index(i) == 2 and nilai_penghasilan.index(j) == 1 and nilai_jarak.index(k) == 2:
                 z.append(z_dapat(alpha, x))

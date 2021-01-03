@@ -5,6 +5,7 @@ import pandas
 from itertools import product
 from multiprocessing import Process, Manager
 
+
 def linear_turun(a, b, x):
     derajat_keanggotaan = (1 if x <= a else (b - x) / (b - a) if a <= x <= b else 0)
     yield derajat_keanggotaan
